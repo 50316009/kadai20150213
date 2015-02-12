@@ -11,8 +11,7 @@ public class Kadai_main {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		int id;
-		double percentage;
+		int id,percentage;
 		String year;
 		ResultSet rs;
 		MySQL mysql = new MySQL();
@@ -21,7 +20,7 @@ public class Kadai_main {
 				while(rs.next()){
 				    id = rs.getInt("id");
 				    year = rs.getString("year");
-				    percentage = rs.getDouble("percentage");
+				    percentage = rs.getInt("percentage");
 				    System.out.println("ID：" + id);
 				    System.out.println("年：" + year);
 				    System.out.println("パーセント：" + percentage);

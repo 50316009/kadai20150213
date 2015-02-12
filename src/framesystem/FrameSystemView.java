@@ -28,21 +28,21 @@ public class FrameSystemView extends Frame implements ActionListener,WindowListe
 
 	private Button button1 = new Button("グラフ");
 	CardLayout cardlayout;
-	Panel panel;
-	Panel btnpanel;
+	Panel panela;
+	Panel panelb;
 	
 
 	public FrameSystemView(FrameSystemController controller) {
 		// TODO Auto-generated constructor stub
-		panel =new Panel();
-		btnpanel = new Panel();
+		panela =new Panel();
+		panelb = new Panel();
 		addWindowListener(this);
 		setTitle("Graph");
 		cardlayout= new CardLayout();
 		setLayout(cardlayout);
-		btnpanel.add(button1,BorderLayout.CENTER);
-		add(btnpanel); 
-		add(panel); 
+		panelb.add(button1,BorderLayout.CENTER);
+		add(panelb); 
+		add(panela); 
 		button1.addActionListener(this); 
 
 		
@@ -95,8 +95,7 @@ public class FrameSystemView extends Frame implements ActionListener,WindowListe
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getSource() == button1){
-			int id;
-			double percentage;
+			int id,percentage;
 			String year;
 			ResultSet rs;
 			MySQL mysql = new MySQL();
@@ -107,9 +106,9 @@ public class FrameSystemView extends Frame implements ActionListener,WindowListe
 				while(rs.next()){
 				id = rs.getInt("id");
 				year = rs.getString("year");
-			    percentage = rs.getDouble("percentage");
-			    data.addValue(percentage,"year",year); 
-	 			panel.add(new Label("id:"+id+" / year"+year+" / percentage"+percentage)); 
+			    percentage = rs.getInt("percentage");
+			    data.addValue(percentage,"大学進学率",year); 
+	 			panela.add(new Label("id:"+id+" / year"+year+" / percentage"+percentage)); 
 				}
 
 			} catch (SQLException e1) {
@@ -128,7 +127,7 @@ public class FrameSystemView extends Frame implements ActionListener,WindowListe
 			                                   false);
 
 			    ChartPanel cpanel = new ChartPanel(chart);
-			    panel.add(cpanel);
+			    panela.add(cpanel);
 			    cardlayout.next(this);
 
 		}
